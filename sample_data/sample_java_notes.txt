@@ -1,0 +1,39 @@
+JAVA OBJECT ORIENTED PROGRAMMING LECTURE NOTES
+
+Chapter 1: Classes and Objects
+A class is a user-defined blueprint or prototype from which objects are created. It represents the set of properties or methods that are common to all objects of one type.
+An object is a basic unit of Object-Oriented Programming and represents real-life entities. An object has three characteristics: State (data values), Behavior (methods), and Identity (unique ID).
+In Java, memory for objects is dynamically allocated in the Heap using the 'new' keyword.
+
+Chapter 2: Constructors
+A constructor in Java is a special member function used to initialize objects. It is called when an instance of the class is created.
+Key rules for constructors:
+1. Constructor name must match the class name exactly.
+2. A constructor must have NO explicit return type (not even void).
+3. If no constructor is written, Java provides a default no-argument constructor.
+
+Chapter 3: Inheritance
+Inheritance is the mechanism in Java by which one class acquires the properties (fields) and behaviors (methods) of another class.
+The 'extends' keyword is used to inherit from a class. The class that inherits is called the subclass (derived or child), and the class being inherited from is the superclass (base or parent).
+Java supports single inheritance and multilevel inheritance for classes, but NOT multiple inheritance of classes (to avoid the Diamond Problem).
+
+Chapter 4: Method Overriding
+If a subclass provides the specific implementation of a method that has already been declared in its superclass, it is known as method overriding.
+Rules for Method Overriding:
+1. The method in the child class must have the exact same name as in the parent class.
+2. The method in the child class must have the exact same parameter list and compatible return type.
+3. The access modifier cannot be more restrictive than the parent class method (e.g. if superclass method is protected, subclass method can be protected or public, but not private).
+4. Static methods, private methods, and final methods CANNOT be overridden.
+Method overriding is used for Runtime Polymorphism (dynamic method dispatch).
+
+Chapter 5: Abstract Classes
+An abstract class in Java is a class declared with the 'abstract' keyword. It cannot be instantiated directly using 'new'.
+It may contain abstract methods (methods declared without an implementation body) as well as concrete methods.
+If a regular class extends an abstract class, it must implement all abstract methods, otherwise the child class must also be declared abstract.
+
+Chapter 6: Interfaces
+An interface in Java is a blueprint of a class. It is declared using the 'interface' keyword and implemented by classes using 'implements'.
+Interfaces specify WHAT a class must do, but not HOW it does it.
+All fields in an interface are implicitly public, static, and final.
+All methods in an interface are implicitly public and abstract (prior to default/static methods in Java 8).
+A class can implement multiple interfaces, allowing Java to achieve multiple inheritance of type.
