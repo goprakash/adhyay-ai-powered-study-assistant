@@ -46,22 +46,6 @@ adhyay/
 
 ---
 
-## 🚀 How to Access the Program
-
-### Currently Running
-Both the FastAPI backend and React frontend are running live:
-👉 **[http://localhost:5173](http://localhost:5173)** (Frontend)
-👉 **[http://localhost:8000/docs](http://localhost:8000/docs)** (FastAPI Interactive Swagger Docs)
-
-### Running in the Future
-To launch both services simultaneously:
-```bash
-cd /Users/gopikaprakash/Documents/adhyay
-./run_adhyay.sh
-```
-
----
-
 ## 🌟 Core Features Implemented
 
 1. **Peaceful Login & Registration**: Clean sign-in with a **1-click Demo Student Sign-In** button (`student@adhyay.edu` / `student123`).
