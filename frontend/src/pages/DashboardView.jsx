@@ -47,7 +47,52 @@ export default function DashboardView({
       {/* Header */}
       <div style={{ marginBottom: '1.5rem' }}>
         <h1 style={{ fontSize: '1.85rem', marginBottom: '0.2rem' }}>📖 {activeNotebook.subject_name}</h1>
-        <p className="subdued">{activeNotebook.description || 'Continuous cognitive tracking and structured mastery.'}</p>
+      </div>
+
+      {/* Simultaneous Multi-Notebook Shelf */}
+      <div style={{ marginBottom: '2rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+          <div>
+            <h3 style={{ fontSize: '1.2rem', margin: 0 }}>📚 Your Subject Notebooks</h3>
+            <span className="subdued"> Click any subject to switch context:</span>
+          </div>
+          <button onClick={() => onNavigate('notebooks')} className="btn" style={{ fontSize: '0.85rem' }}>
+            ➕ Manage Notebooks
+          </button>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
+          {notebooks.map(nb => {
+            const isActive = nb.id === activeNotebook.id;
+            return (
+              <div
+                key={nb.id}
+                onClick={() => !isActive && setActiveNotebookId(nb.id)}
+                style={{
+                  background: isActive ? '#F0FDFA' : '#FFFFFF',
+                  border: isActive ? '2px solid #0D9488' : '1px solid #E2E8F0',
+                  borderRadius: '12px',
+                  padding: '1.2rem',
+                  cursor: isActive ? 'default' : 'pointer',
+                  transition: 'transform 0.15s ease, box-shadow 0.15s ease'
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                  <h4 style={{ margin: 0, fontSize: '1.05rem', color: '#0F172A' }}>{nb.subject_name}</h4>
+                  {isActive && <span className="badge badge-mastered">ACTIVE</span>}
+                </div>
+                <p style={{ fontSize: '0.85rem', color: '#64748B', margin: '0 0 0.75rem 0' }}>
+                  {nb.topic_count || 0} topics • Avg Mastery: {nb.average_mastery || 0}%
+                </p>
+                {!isActive && (
+                  <button className="btn" style={{ fontSize: '0.8rem', padding: '0.35rem 0.65rem' }}>
+                    Switch to this Subject
+                  </button>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       {/* Metrics Row */}
@@ -112,51 +157,6 @@ export default function DashboardView({
         </div>
       )}
 
-      {/* Simultaneous Multi-Notebook Shelf */}
-      <div style={{ marginBottom: '2rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-          <div>
-            <h3 style={{ fontSize: '1.2rem', margin: 0 }}>📚 Your Subject Notebooks</h3>
-            <span className="subdued">All notebooks coexist simultaneously. Click any subject to switch context:</span>
-          </div>
-          <button onClick={() => onNavigate('notebooks')} className="btn" style={{ fontSize: '0.85rem' }}>
-            ➕ Manage Notebooks
-          </button>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
-          {notebooks.map(nb => {
-            const isActive = nb.id === activeNotebook.id;
-            return (
-              <div
-                key={nb.id}
-                onClick={() => !isActive && setActiveNotebookId(nb.id)}
-                style={{
-                  background: isActive ? '#F0FDFA' : '#FFFFFF',
-                  border: isActive ? '2px solid #0D9488' : '1px solid #E2E8F0',
-                  borderRadius: '12px',
-                  padding: '1.2rem',
-                  cursor: isActive ? 'default' : 'pointer',
-                  transition: 'transform 0.15s ease, box-shadow 0.15s ease'
-                }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                  <h4 style={{ margin: 0, fontSize: '1.05rem', color: '#0F172A' }}>{nb.subject_name}</h4>
-                  {isActive && <span className="badge badge-mastered">ACTIVE</span>}
-                </div>
-                <p style={{ fontSize: '0.85rem', color: '#64748B', margin: '0 0 0.75rem 0' }}>
-                  {nb.topic_count || 0} topics • Avg Mastery: {nb.average_mastery || 0}%
-                </p>
-                {!isActive && (
-                  <button className="btn" style={{ fontSize: '0.8rem', padding: '0.35rem 0.65rem' }}>
-                    Switch to this Subject
-                  </button>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
 
       {/* Focus Areas & Cognitive Health */}
       <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
